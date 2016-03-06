@@ -1090,14 +1090,14 @@ Options_ShowGrid:
   If ShowGroupsFlag
   {
     ShowGroupsFlag := false
-    Menu,options_menu, Uncheck, %tray_showgrid%
-    Menu,options_menu,Disable, %tray_shownumbers%
+    Menu, options_menu, Uncheck, %tray_showgrid%
+    Menu, options_menu, Disable, %tray_shownumbers%
   }
   else
   {
     ShowGroupsFlag := True
-    Menu,options_menu, Check, %tray_show%
-    Menu,options_menu,Enable, %tray_shownumbers%
+    Menu,options_menu,  Check, %tray_showgrid%
+    Menu,options_menu, Enable, %tray_shownumbers%
   }
   GoSub, WriteIni
 return
