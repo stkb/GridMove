@@ -5,11 +5,11 @@ OSDCreate()
   Gui,4: Font,S13
   Gui,4: Add, Button, vOSD x0 y0 w100 h30 ,
   Gui,4: Color, EEAAEE
-  Gui,4: Show, x0 y0 w0 h0 noactivate, OSD 
+  Gui,4: Show, x0 y0 w0 h0 noactivate, OSD
   WinSet, TransColor, EEAAEE,OSD
   return
   }
-  
+
 OSDWrite(Value)
   {
   Global OSD
@@ -23,7 +23,7 @@ OSDWrite(Value)
   Gui,4:Show, x%Xpos% y%Ypos% w100 h30 noactivate
   return
   }
-  
+
 OSDHide()
   {
   Gui,4:hide,
