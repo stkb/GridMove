@@ -21,7 +21,7 @@ ReadIni:
 
   IfExist,%ScriptDir%
     IniRead,isFirstRun            ,%ScriptDir%,IniSettings,IniVersion,false
-    
+
 
   IniVersion=15
   IfExist,%ScriptDir%
@@ -153,12 +153,12 @@ ReadIni:
     If(Registered = "Error")
       Registered =
 
-    If (GridName          = "Error" OR LButtonDrag    = "Error" OR MButtonDrag       = "Error" 
-        OR EdgeDrag       = "Error" OR EdgeTime       = "Error" OR ShowGroupsFlag    = "Error" 
-        OR TitleSize      = "Error" OR ShowGroupsFlag = "Error" OR ShowNumbersFlag   = "Error" 
-        OR TitleSize      = "Error" OR GridOrder      = "Error" OR UseCommand        = "Error" 
-        OR CommandHotkey  = "Error" OR UseFastMove    = "Error" OR FastMoveModifiers = "Error" 
-        OR FastMoveMeta   = "Error" OR TitleLeft      = "Error" OR MButtonTimeout    = "Error" 
+    If (GridName          = "Error" OR LButtonDrag    = "Error" OR MButtonDrag       = "Error"
+        OR EdgeDrag       = "Error" OR EdgeTime       = "Error" OR ShowGroupsFlag    = "Error"
+        OR TitleSize      = "Error" OR ShowGroupsFlag = "Error" OR ShowNumbersFlag   = "Error"
+        OR TitleSize      = "Error" OR GridOrder      = "Error" OR UseCommand        = "Error"
+        OR CommandHotkey  = "Error" OR UseFastMove    = "Error" OR FastMoveModifiers = "Error"
+        OR FastMoveMeta   = "Error" OR TitleLeft      = "Error" OR MButtonTimeout    = "Error"
         OR Transparency   = "Error" OR Exceptions     = "Error" OR SafeMode          = "Error"
         OR SequentialMove = "Error" OR DebugMode      = "Error" OR NoTrayIcon        = "Error"
         OR FirstRun       = "ERROR"
@@ -187,19 +187,19 @@ firstRun:
     GoSub,WriteIni
     msgbox,64,%info_firstrun_title%,%info_firstrun%
     settimer, helper,100
-    
+
 WriteIni:
   IfNotExist,%ScriptDir%
   {
     FileCreateDir,%A_AppData%/DonationCoder/
     if(ErrorLevel <> 0)
-    {           
+    {
       ScriptDir=%A_ScriptDir%\%A_ScriptName%.ini
     }
     else
       FileCreateDir,%A_AppData%/DonationCoder/GridMove/
       if(ErrorLevel <> 0)
-      {           
+      {
         ScriptDir=%A_ScriptDir%\%A_ScriptName%.ini
       }
     FileAppend, ,%ScriptDir%
@@ -231,8 +231,8 @@ WriteIni:
   IniWrite,%Language%         ,%ScriptDir%,OtherSettings    ,Language
   IniWrite,%NoTrayIcon%       ,%ScriptDir%,InterfaceSettings,NoTrayIcon
   IniWrite,%FirstRun%         ,%ScriptDir%,IniSettings      ,FirstRun
-Return   
-   
+Return
+
 ;***************************************************************About / help GUI
 AboutHelp:
   if mutex
@@ -248,7 +248,7 @@ AboutHelp:
   else
     IfExist %A_ScriptDir%\gridmove.exe
       gui, 3:Add , Picture, x15 y35,%A_ScriptDir%\gridmove.exe
-      
+
   gui, 3:Font,Bold s10
   if(Registered="quebec")
     gui, 3:Add ,Text,x70 y45,GridMove V%ScriptVersion% by João Paiva`n
@@ -274,7 +274,7 @@ AboutHelp:
     IfExist,%A_SCRIPTDIR%/Images/CLP_LOGO.png
       Gui, 3:Add ,Picture, Y290 X235,%A_SCRIPTDIR%/Images/CLP_LOGO.png
   }else{
-    ifexist,%a_scriptdir%/images/cody.png 
+    ifexist,%a_scriptdir%/images/cody.png
       gui, 3:add ,picture, y290 x280,%a_scriptdir%/images/cody.png
   }
 
@@ -297,10 +297,10 @@ AboutHelp:
   Gui, 3:Add, Edit, w413 R29 vMyEdit ReadOnly
   if(Language = "FR"){
     IfExist, %A_ScriptDir%\GridMoveHelp_FR.txt
-      FileRead, FileContents,%A_ScriptDir%\GridMoveHelp_FR.txt 
+      FileRead, FileContents,%A_ScriptDir%\GridMoveHelp_FR.txt
   }else{
     IfExist, %A_ScriptDir%\GridMoveHelp_EN.txt
-      FileRead, FileContents,%A_ScriptDir%\GridMoveHelp_EN.txt 
+      FileRead, FileContents,%A_ScriptDir%\GridMoveHelp_EN.txt
   }
   GuiControl,3:, MyEdit, %FileContents%
 
@@ -326,47 +326,47 @@ return
 
 Post:
   Run,http://www.donationcoder.com/Forums/bb/index.php?topic=3824
-  GoSub,3GuiCLOSE 
+  GoSub,3GuiCLOSE
 return
-  
+
 MainSite:
   Run,http://www.donationcoder.com/
-  GoSub,3Guiclose 
+  GoSub,3Guiclose
 return
-  
+
 DonateSite:
   Run,http://www.donationcoder.com/Donate/index.html
   GoSub,3Guiclose
 return
-  
+
 DonateAuthor:
   Run,https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=jgpaiva`%40gmail`%2ecom&item_name`=donate`%20to`%20jgpaiva&item_number`=donationcoder`%2ecom&no_shipping=1&cn=Please`%20drop`%20me`%20a`%20line`%20`%3aD&tax`=0&currency_code=EUR&bn=PP`%2dDonationsBF&charset=UTF`%2d8
   GoSub,3Guiclose
-return  
-  
+return
+
 3GuiEscape:
-3GuiClose:  
+3GuiClose:
 buttonok:
   gui,3:destroy
   mutex:=false
 return
-  
+
 ;*********************************************************************Templates
 
 
 Template-3part:
   Menu,Templates,DeleteAll
-  CreateTemplatesMenu() 
+  CreateTemplatesMenu()
 
   SysGet, MonitorCount, MonitorCount
   Count := 0
-  
+
   loop, %MonitorCount%
   {
     SysGet, Monitor, MonitorWorkArea,%A_index%
     MonitorWidth := MonitorRight - MonitorLeft
     MonitorHeight := MonitorBottom - MonitorTop
-    
+
     Count+=1
     %Count%TriggerTop    := MonitorTop
     %Count%TriggerRight  := MonitorRight
@@ -376,7 +376,7 @@ Template-3part:
     %Count%GridRight     := %Count%TriggerRight
     %Count%GridBottom    := %Count%TriggerBottom
     %Count%GridLeft      := %Count%TriggerLeft
-    
+
     Count+=1
     %Count%TriggerTop    := MonitorTop
     %Count%TriggerRight  := MonitorLeft + Round(MonitorWidth / 3)
@@ -386,7 +386,7 @@ Template-3part:
     %Count%GridRight     := %Count%TriggerRight
     %Count%GridBottom    := %Count%TriggerBottom
     %Count%GridLeft      := %Count%TriggerLeft
-    
+
     Count+=1
     temp := count - 1
     %Count%TriggerTop    := %Temp%TriggerBottom +0.01

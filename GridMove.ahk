@@ -651,7 +651,12 @@ SnapWindow:
       if ShouldUseSizeMoveMessage(WinClass)
         SendMessage WM_ENTERSIZEMOVE, , , ,ahk_id %windowid%
 
-      WinMove, ahk_id %windowid%, ,%GridLeft%,%GridTop%,%GridWidth%,%GridHeight%,
+      left   := GridLeft   - 5 ; FIXME: Window border padding in Grid*
+      top    := GridTop    - 0 ; FIXME: Window border padding in Grid*
+      width  := GridWidth  + 9 ; FIXME: Window border padding in Grid*
+      height := GridHeight + 6 ; FIXME: Window border padding in Grid*
+
+      WinMove, ahk_id %windowid%, ,%left%,%top%,%width%,%height%,
 
       if ShouldUseSizeMoveMessage(WinClass)
         SendMessage WM_EXITSIZEMOVE, , , ,ahk_id %windowid%
