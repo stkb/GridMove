@@ -936,7 +936,7 @@ creategroups:
 
   Gui,show,x0 y0 w0 h0 noactivate,GridMove Drop Zone 0xba
   WinGet,GuiId,Id,GridMove Drop Zone 0xba
-  WinSet, TransColor, %guicolor%, ahk_id %GuiId%
+  WinSet, Transparent, %Transparency%
 
   Gui,2: +lastfound
   gui2hwnd:=WinExist() ;handle.
