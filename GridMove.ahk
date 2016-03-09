@@ -3,38 +3,35 @@
 ;date: May 2006
 ;function: Adjusts windows to a predefined or user-defined desktop grid.
 
-  ;;options:
-  MButtonDrag := True ;to be able to drag a window using the 3rd mouse button
-  LButtonDrag:=True ;to be able to drag a window by its title
-  EdgeDrag := True ;to be able to bring the grid up when dragging a window to the edge
-  EdgeTime := 500
-  ShowGroupsFlag := True ;configures the showing or not of the groups
-  ShowNumbersFlag := True ;configures the showing or not of the numbers
-  TitleSize := 100
-  GridName = Grids/3 Part.grid
-  GridOrder = 2 Part Vertical,3 Part,Edge Grid,Dual Screen
-  UseCommand := True
-  CommandHotkey = #g
-  UseFastMove := True
-  FastMoveModifiers = #
-  Exceptions = QuarkXPress,Winamp v1.x,Winamp PE,Winamp Gen,Winamp EQ,Shell_TrayWnd,32768,Progman,DV2ControlHost
-  MButtonExceptions = inkscape.exe
-  MButtonTimeout = 0.3
-  Transparency = 200
-  SafeMode := True
-  FastMoveMeta =
-  SequentialMove := False
-  DebugMode := False
-  StartWithWindows := False
-  DisableTitleButtonsDetection := False
-  ColorTheme=orange
-  Language=EN
-  NoTrayIcon:=False
-  FirstRun:=True
-
-  ;Registered=quebec
-
-  ;;end of options
+    /* Options */
+    DisableTitleButtonsDetection := False
+    FastMoveModifiers             = #
+    MButtonExceptions             = inkscape.exe
+    StartWithWindows             := False
+    ShowNumbersFlag              := True  ;Whether or not to show numbers
+    SequentialMove               := False
+    ShowGroupsFlag               := True  ;Whether or not to show groups
+    MButtonTimeout                = 0.3
+    CommandHotkey                 = #g
+    Transparency                  = 200
+    FastMoveMeta                  =
+    MButtonDrag                  := True ;Drag a window with the 3rd mouse button
+    LButtonDrag                  := True ;Drag a window by its title
+    UseFastMove                  := True
+    Exceptions                    = QuarkXPress,Winamp v1.x,Winamp PE,Winamp Gen,Winamp EQ,Shell_TrayWnd,32768,Progman,DV2ControlHost
+    ColorTheme                    = orange
+    NoTrayIcon                   := False
+    UseCommand                   := True
+    GridOrder                     = 2 Part Vertical,3 Part,Edge Grid,Dual Screen
+    DebugMode                    := False
+    TitleSize                    := 100
+    GridName                      = Grids/3 Part.grid
+    SafeMode                     := True
+    FirstRun                     := True
+    EdgeDrag                     := True ;Displays the grid when dragging a window to the edge
+    EdgeTime                     := 500
+    Language                      = EN
+    /* End Of Options */
 
   ScriptVersion = 1.19.72
 
