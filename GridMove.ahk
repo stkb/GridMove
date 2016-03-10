@@ -3,49 +3,42 @@
 ;date: May 2006
 ;function: Adjusts windows to a predefined or user-defined desktop grid.
 
-  ;;options:
-  MButtonDrag := True ;to be able to drag a window using the 3rd mouse button
-  LButtonDrag:=True ;to be able to drag a window by its title
-  EdgeDrag := True ;to be able to bring the grid up when dragging a window to the edge
-  EdgeTime := 500
-  ShowGroupsFlag := True ;configures the showing or not of the groups
-  ShowNumbersFlag := True ;configures the showing or not of the numbers
-  TitleSize := 100
-  GridName = Grids/3 Part.grid
-  GridOrder = 2 Part Vertical,3 Part,Edge Grid,Dual Screen
-  UseCommand := True
-  CommandHotkey = #g
-  UseFastMove := True
-  FastMoveModifiers = #
-  Exceptions = QuarkXPress,Winamp v1.x,Winamp PE,Winamp Gen,Winamp EQ,Shell_TrayWnd,32768,Progman,DV2ControlHost
-  MButtonExceptions = inkscape.exe
-  MButtonTimeout = 0.3
-  Transparency = 200
-  SafeMode := True
-  FastMoveMeta =
-  SequentialMove := False
-  DebugMode := False
-  StartWithWindows := False
-  DisableTitleButtonsDetection := False
-  ColorTheme=orange
-  Language=EN
-  NoTrayIcon:=False
-  FirstRun:=True
+    ; Options
+    ColorTheme                    = orange
+    CommandHotkey                 = #g
+    DebugMode                    := False
+    DisableTitleButtonsDetection := False
+    EdgeDrag                     := True ; Enable the grid when dragging a window to the edge
+    EdgeTime                     := 500
+    Exceptions                    = QuarkXPress,Winamp v1.x,Winamp PE,Winamp Gen,Winamp EQ,Shell_TrayWnd,32768,Progman,DV2ControlHost
+    FastMoveMeta                  =
+    FastMoveModifiers             = #
+    FirstRun                     := True
+    GridName                      = Grids/3 Part.grid
+    GridOrder                     = 2 Part Vertical, 3 Part, Edge Grid, Dual Screen
+    Language                      = EN
+    LButtonDrag                  := True ; Allows dragging a window by its title
+    MButtonDrag                  := True ; Allows dragging a window using the 3rd mouse button
+    MButtonExceptions             = inkscape.exe
+    MButtonTimeout                = 0.3
+    NoTrayIcon                   := False
+    SafeMode                     := True
+    SequentialMove               := False
+    ShowGroupsFlag               := True ; Displays groups on the GUI
+    ShowNumbersFlag              := True ; Displays numbers on the GUI
+    StartWithWindows             := False
+    TitleSize                    := 100
+    Transparency                  = 200
+    UseCommand                   := True
+    UseFastMove                  := True
 
-  ;Registered=quebec
+    ScriptVersion = 1.19.72
+    MutexExists("GridMove_XB032")
 
-  ;;end of options
-
-  ScriptVersion = 1.19.72
-
-  MutexExists("GridMove_XB032")
-
-
-  Sysget, CaptionSize,4  ;get the size of the caption
-  Sysget, BorderSize, 46 ;get the size of the border
-  CaptionSize += BorderSize
-
-  TitleLeft := CaptionSize
+    Sysget, CaptionSize, 4  ; Gets the size of the caption
+    Sysget,  BorderSize, 46 ; Gets the size of the border
+    CaptionSize += BorderSize
+    TitleLeft   := CaptionSize
 
   if DebugMode
     Traytip,GridMove,Reading INI,10
