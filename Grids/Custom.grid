@@ -37,10 +37,10 @@
   TriggerTop    = [Monitor1Top   ]
   TriggerBottom = [Monitor1Bottom]
   TriggerLeft   = [Monitor1Left  ] + [Monitor1Width ] / 5 * 2
-  TriggerRight  = [Monitor1Left  ] + [Monitor1Width ] / 5 * 3
+  TriggerRight  = [Monitor1Left  ] + [Monitor1Width ] / 5 * 3.5
 
 [6]
   TriggerTop    = [Monitor1Top   ]
   TriggerBottom = [Monitor1Bottom]
-  TriggerLeft   = [Monitor1Left  ] + [Monitor1Width ] / 5 * 3
+  TriggerLeft   = [Monitor1Left  ] + [Monitor1Width ] / 5 * 3.5
   TriggerRight  = [Monitor1Right ]
