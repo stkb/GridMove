@@ -604,11 +604,10 @@ SnapWindow:
     triggerRight  := %A_Index%TriggerRight
     triggerLeft   := %A_Index%TriggerLeft
 
-    GridBottom :=0
-    GridRight  :=0
-    GridTop    :=0
-    GridLeft   :=0
-
+    GridBottom := 0
+    GridRight  := 0
+    GridTop    := 0
+    GridLeft   := 0
 
     If (MouseY >= triggerTop AND MouseY <= triggerBottom
         AND MouseX <= triggerRight AND MouseX >= triggerLeft)
@@ -641,12 +640,7 @@ SnapWindow:
       if ShouldUseSizeMoveMessage(WinClass)
         SendMessage WM_ENTERSIZEMOVE, , , ,ahk_id %windowid%
 
-      left   := GridLeft   - 5 ; FIXME: Window border padding in Grid*
-      top    := GridTop    - 0 ; FIXME: Window border padding in Grid*
-      width  := GridWidth  + 8 ; FIXME: Window border padding in Grid*
-      height := GridHeight + 6 ; FIXME: Window border padding in Grid*
-
-      WinMove, ahk_id %windowid%, ,%left%,%top%,%width%,%height%,
+      WinMove, ahk_id %windowid%, ,GridLeft, %GridTop%,%GridWidth%,%GridHeight%,
 
       if ShouldUseSizeMoveMessage(WinClass)
         SendMessage WM_EXITSIZEMOVE, , , ,ahk_id %windowid%
@@ -741,6 +735,11 @@ GetGrid(number)
 
   GridWidth  := GridRight - GridLeft
   GridHeight := GridBottom - GridTop
+
+    ; FIXME: Window border padding in Grid*
+    GridLeft   := GridLeft   - 5
+    GridWidth  := GridWidth  + 8
+    GridHeight := GridHeight + 6
 }
 
 
