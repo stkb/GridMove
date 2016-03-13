@@ -4,33 +4,33 @@
 ;function: Adjusts windows to a predefined or user-defined desktop grid.
 
     ; Options
-    ColorTheme                    = orange
-    CommandHotkey                 = #g
-    DebugMode                    := False
-    DisableTitleButtonsDetection := False
-    EdgeDrag                     := True ; Enable the grid when dragging a window to the edge
-    EdgeTime                     := 500
-    Exceptions                    = QuarkXPress,Winamp v1.x,Winamp PE,Winamp Gen,Winamp EQ,Shell_TrayWnd,32768,Progman,DV2ControlHost
-    FastMoveMeta                  =
-    FastMoveModifiers             = #
-    FirstRun                     := True
-    GridName                      = Grids/3 Part.grid
-    GridOrder                     = 2 Part Vertical, 3 Part, Edge Grid, Dual Screen
-    Language                      = EN
+    ShowNumbersFlag              := True ; Displays numbers on the GUI
+    ShowGroupsFlag               := True ; Displays groups on the GUI
+    UseFastMove                  := True
     LButtonDrag                  := True ; Allows dragging a window by its title
     MButtonDrag                  := True ; Allows dragging a window using the 3rd mouse button
-    MButtonExceptions             = inkscape.exe
-    MButtonTimeout                = 0.3
-    NoTrayIcon                   := False
-    SafeMode                     := True
-    SequentialMove               := False
-    ShowGroupsFlag               := True ; Displays groups on the GUI
-    ShowNumbersFlag              := True ; Displays numbers on the GUI
-    StartWithWindows             := False
-    TitleSize                    := 100
-    Transparency                  = 200
     UseCommand                   := True
-    UseFastMove                  := True
+    SafeMode                     := True
+    FirstRun                     := True
+    EdgeDrag                     := True ; Enable the grid when dragging a window to the edge
+    DisableTitleButtonsDetection := False
+    StartWithWindows             := False
+    SequentialMove               := False
+    NoTrayIcon                   := False
+    DebugMode                    := False
+    MButtonTimeout                = 0.3
+    Transparency                  = 200
+    TitleSize                    := 100
+    EdgeTime                     := 50
+    FastMoveModifiers             = #
+    MButtonExceptions             = inkscape.exe
+    CommandHotkey                 = #g
+    FastMoveMeta                  =
+    ColorTheme                    = orange
+    Exceptions                    = QuarkXPress,Winamp v1.x,Winamp PE,Winamp Gen,Winamp EQ,Shell_TrayWnd,32768,Progman,DV2ControlHost
+    GridOrder                     = 2 Part Vertical, 3 Part, Edge Grid, Dual Screen
+    Language                      = EN
+    GridName                      = Grids/3 Part.grid
 
     ScriptVersion = 1.19.72
     MutexExists("GridMove_XB032")
@@ -40,11 +40,8 @@
     CaptionSize += BorderSize
     TitleLeft   := CaptionSize
 
-  if DebugMode
-    Traytip,GridMove,Reading INI,10
-
-  ;goSub, showOptions
-
+    if DebugMode
+      Traytip, GridMove, Reading INI, 10
 
   GetScreenSize()       ;get the size of the monitors
   GetMonitorSizes()
