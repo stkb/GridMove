@@ -283,7 +283,7 @@ MoveToGrid(GridToMove)
   GridWidth  := GridRight - GridLeft
   GridHeight := GridBottom - GridTop
 
-    ; FIXME: Window border padding in Grid*
+    ; FIXME: Window border padding in Grid* TEST
     GridLeft   := GridLeft   - 5
     GridWidth  := GridWidth  + 8
     GridHeight := GridHeight + 6
