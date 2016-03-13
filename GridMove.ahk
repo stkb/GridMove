@@ -765,7 +765,6 @@ Hidegroups:
 
 setGuiColors()
 {
-  global shadowcolor
   global textcolor
   global guicolor
   global colortheme
@@ -795,135 +794,95 @@ setGuiColors()
 }
 
 creategroups:
-  gui,destroy
-  setGuiColors()
-  loop,%NGroups%
-  {
-    TriggerTop    := (%A_Index%TriggerTop    / 2) - ScreenTop
-    TriggerBottom := (%A_Index%TriggerBottom / 2) - ScreenTop
-    TriggerLeft   := (%A_Index%TriggerLeft   / 2) - ScreenLeft
-    TriggerRight  := (%A_Index%TriggerRight  / 2) - ScreenLeft
-    TriggerHeight := TriggerBottom - TriggerTop
-    TriggerWidth  := TriggerRight  - TriggerLeft
-    GridTop       := %A_Index%GridTop
-    GridLeft      := %A_Index%GridLeft
+    Gui, Destroy
+    Gui -DPIScale
+    setGuiColors()
 
-    TextTop  := (%A_Index%TriggerTop  / 2) + (TriggerHeight / 2)  - ScreenTop
-    TextLeft := (%A_Index%TriggerLeft / 2) + (TriggerWidth  / 2)  - ScreenLeft
-    RestoreLeft := TextLeft - 50
-    tempTop    := TriggerTop
-    tempBottom := TriggerBottom
-    tempLeft   := TriggerLeft
-    tempRight  := TriggerRight
-    tempHeight := tempBottom - tempTop  + 2
-    tempWidth  := tempRight  - tempLeft + 2
-    Gui, add, Picture, Y%tempTop%    X%tempLeft%   W%tempWidth% H3, %A_ScriptDir%\Images\%horizontalGrid%
-    Gui, add, Picture, Y%tempBottom% X%tempLeft%   W%tempWidth% H3, %A_ScriptDir%\Images\%horizontalGrid%
-    Gui, add, Picture, Y%tempTop%    X%tempLeft%  W3 H%tempHeight%, %A_ScriptDir%\Images\%verticalGrid%
-    Gui, add, Picture, Y%tempTop%    X%tempRight% W3 H%tempHeight%, %A_ScriptDir%\Images\%verticalGrid%
-
-    If ShowNumbersFlag
-      If GridTop is number
-        If GridLeft is number
-          If A_Index < 10
-          {
-            Gui, add, text, BackGroundTrans c%textcolor% X%TextLeft% Y%TextTop% ,%A_Index%
-          }
-          else
-          {
-            Gui, add, text,% "X" TextLeft " Y" TextTop "c"textcolor "BackGroundTrans" ,%A_Index%
-          }
-
-
-    RestoreLeftShadow := RestoreLeft + 1
-    RestoreUndo := RestoreLeft + 20
-    RestoreUndoShadow := RestoreUndo + 1
-
-    If ShowNumbersFlag
+    loop,%NGroups%
     {
-      If (GridTop = "WindowHeight" OR GridLeft = "WindowWidth")
-      {
-        Gui, add, text,c%textcolor% BackGroundTrans  X%TextLeft% Y%TextTop% ,%A_Index%
-      }
-      If Gridtop = Restore
-      {
-        Gui, add, text,c%textcolor% BackGroundTrans  X%RestoreUndo% Y%TextTop% ,%A_Index%-Undo
-      }
-      If GridTop = Maximize
-      {
-        Gui, add, text,c%textcolor% BackGroundTrans  X%RestoreLeft% Y%TextTop% ,%A_Index%-Maximize
-      }
-      If GridTop = AlwaysOnTop
-      {
-        Gui, add, text,c%textcolor% BackGroundTrans  X%RestoreLeft% Y%TextTop% ,%A_Index%-On Top
-      }
-    }
-    else
-    {
-      If Gridtop = Restore
-      {
-        Gui, add, text,c%textcolor% BackGroundTrans  X%RestoreUndo% Y%TextTop% ,Undo
-      }
-      If GridTop = Maximize
-      {
-        Gui, add, text,c%textcolor% BackGroundTrans  X%RestoreLeft% Y%TextTop% ,Maximize
-      }
-      If GridTop = AlwaysOnTop
-      {
-        Gui, add, text,c%textcolor% BackGroundTrans  X%RestoreLeft% Y%TextTop% ,On Top
-      }
+        TriggerTop    := %A_Index%TriggerTop    - ScreenTop
+        TriggerBottom := %A_Index%TriggerBottom - ScreenTop
+        TriggerLeft   := %A_Index%TriggerLeft   - ScreenLeft
+        TriggerRight  := %A_Index%TriggerRight  - ScreenLeft
+        TriggerWidth  := TriggerRight  - TriggerLeft
+        TriggerHeight := TriggerBottom - TriggerTop
+        GridTop       := %A_Index%GridTop
+        GridLeft      := %A_Index%GridLeft
+        TextTop       := %A_Index%TriggerTop  + (TriggerHeight / 2)  - ScreenTop
+        TextLeft      := %A_Index%TriggerLeft + (TriggerWidth  / 2)  - ScreenLeft
+        RestoreLeft   := TextLeft    - 50
+        RestoreUndo   := RestoreLeft + 20
+
+        Gui, add, Picture, Y%TriggerTop%    X%TriggerLeft%  W%TriggerWidth% H3,  %A_ScriptDir%\Images\%horizontalGrid%
+        Gui, add, Picture, Y%TriggerBottom% X%TriggerLeft%  W%TriggerWidth% H3,  %A_ScriptDir%\Images\%horizontalGrid%
+        Gui, add, Picture, Y%TriggerTop%    X%TriggerLeft%  W3 H%TriggerHeight%, %A_ScriptDir%\Images\%verticalGrid%
+        Gui, add, Picture, Y%TriggerTop%    X%TriggerRight% W3 H%TriggerHeight%, %A_ScriptDir%\Images\%verticalGrid%
+
+        If ShowNumbersFlag
+            If GridTop is number
+                If GridLeft is number
+                    If A_Index < 10
+                        Gui, add, text, BackGroundTrans c%textcolor% X%TextLeft% Y%TextTop%, %A_Index%
+                    else
+                        Gui, add, text, % "X" TextLeft " Y" TextTop "c"textcolor "BackGroundTrans" , %A_Index%
+
+
+
+        If ShowNumbersFlag
+        {
+            If (GridTop = "WindowHeight" OR GridLeft = "WindowWidth")
+                Gui, add, text, c%textcolor% BackGroundTrans X%TextLeft% Y%TextTop%,    %A_Index%
+            If Gridtop = Restore
+                Gui, add, text, c%textcolor% BackGroundTrans X%RestoreUndo% Y%TextTop%, %A_Index% -Undo
+            If GridTop = Maximize
+                Gui, add, text, c%textcolor% BackGroundTrans X%RestoreLeft% Y%TextTop%, %A_Index% -Maximize
+            If GridTop = AlwaysOnTop
+                Gui, add, text, c%textcolor% BackGroundTrans X%RestoreLeft% Y%TextTop%, %A_Index% -On Top
+        } else
+        {
+            If Gridtop = Restore
+                Gui, add, text, c%textcolor% BackGroundTrans X%RestoreUndo% Y%TextTop%, Undo
+            If GridTop = Maximize
+                Gui, add, text, c%textcolor% BackGroundTrans X%RestoreLeft% Y%TextTop%, Maximize
+            If GridTop = AlwaysOnTop
+                Gui, add, text, c%textcolor% BackGroundTrans X%RestoreLeft% Y%TextTop%, On Top
+        }
+
+        If Gridtop = Run
+        {
+            GridBottom := %A_Index%GridBottom
+            GridLeft   := %A_Index%GridLeft
+
+            If ShowNumbersFlag
+            {
+                If (%A_Index%GridBottom != "")
+                    Gui, add, text,c%textcolor% BackGroundTrans  X%RestoreLeft% Y%TextTop% ,%A_Index%-%GridBottom%
+                else
+                    Gui, add, text,c%textcolor% BackGroundTrans  X%RestoreLeft% Y%TextTop% ,%A_Index%-%GridLeft%
+            } else
+            {
+                If (%A_Index%GridBottom != "")
+                    Gui, add, text,c%textcolor% BackGroundTrans  X%RestoreLeft% Y%TextTop% ,%GridBottom%
+                else
+                    Gui, add, text,c%textcolor% BackGroundTrans  X%RestoreLeft% Y%TextTop% ,%GridLeft%
+            }
+        }
     }
 
-    If Gridtop = Run
-    {
-      GridBottom := %A_Index%GridBottom
-      GridLeft := %A_Index%GridLeft
+    Gui, +AlwaysOnTop +ToolWindow -Caption +LastFound +E0x20
+    Gui, Color, %guicolor%
+    Gui, Margin, 0, 0
+    Gui, show, x0 y0 w0 h0 noactivate, GridMove Drop Zone 0xba
+    WinGet, GuiId, Id, GridMove Drop Zone 0xba
+    WinSet, TransColor, %guicolor%
 
-      If ShowNumbersFlag
-      {
-        If (%A_Index%GridBottom != "")
-        {
-          Gui, add, text,c%textcolor% BackGroundTrans  X%RestoreLeft% Y%TextTop% ,%A_Index%-%GridBottom%
-        }
-        else
-        {
-          Gui, add, text,c%textcolor% BackGroundTrans  X%RestoreLeft% Y%TextTop% ,%A_Index%-%GridLeft%
-        }
-      }else
-      {
-        If (%A_Index%GridBottom != "")
-        {
-          Gui, add, text,c%textcolor% BackGroundTrans  X%RestoreLeft% Y%TextTop% ,%GridBottom%
-        }
-        else
-        {
-          Gui, add, text,c%textcolor% BackGroundTrans  X%RestoreLeft% Y%TextTop% ,%GridLeft%
-        }
-      }
-    }
-  }
-  Gui, +AlwaysOnTop +ToolWindow -Caption +LastFound +E0x20
-  Gui, Color, %guicolor%
-  Gui, Margin,0,0
-
-  Gui,show,x0 y0 w0 h0 noactivate,GridMove Drop Zone 0xba
-  WinGet,GuiId,Id,GridMove Drop Zone 0xba
-  WinSet, Transparent, %Transparency%
-
-  Gui,2: +lastfound
-  gui2hwnd:=WinExist() ;handle.
-  if(!AeroEnabled)
-  {
+    Gui, 2: +ToolWindow +AlwaysOnTop +lastfound -Disabled -SysMenu -Caption
+    Gui, 2: Color, %guicolor%
+    Gui, 2: Margin, 0, 0
     WinSet, Transparent, %Transparency%,
-    Gui,2: +ToolWindow +AlwaysOnTop -Disabled -SysMenu -Caption
-    Gui,2: Margin,0,0
-  }
-  else
-  {
-    Gui,2: Color, 0
-    Aero_ChangeFrameAreaAll(gui2hwnd) ;call the Function
-  }
-  Gui,hide
+    gui2hwnd := WinExist()
+
+    Gui, hide
 return
 
 ;***********************************************************Aditional Functions
