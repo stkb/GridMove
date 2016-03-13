@@ -774,8 +774,7 @@ setGuiColors()
   if(colortheme="blue")
   {
     Gui, Font, s15 cBlue, Tahoma
-    shadowcolor=555555
-    textcolor=0000FF
+    textcolor=555555
     guicolor=0000EF
     horizontalGrid=Gridh_blue.bmp
     verticalGrid=Gridv_blue.bmp
@@ -802,46 +801,39 @@ creategroups:
   setGuiColors()
   loop,%NGroups%
   {
-    TriggerTop    := %A_Index%TriggerTop - ScreenTop
-    TriggerBottom := %A_Index%TriggerBottom - ScreenTop
-    TriggerLeft   := %A_Index%TriggerLeft - ScreenLeft
-    TriggerRight  := %A_Index%TriggerRight - ScreenLeft
+    TriggerTop    := (%A_Index%TriggerTop    / 2) - ScreenTop
+    TriggerBottom := (%A_Index%TriggerBottom / 2) - ScreenTop
+    TriggerLeft   := (%A_Index%TriggerLeft   / 2) - ScreenLeft
+    TriggerRight  := (%A_Index%TriggerRight  / 2) - ScreenLeft
     TriggerHeight := TriggerBottom - TriggerTop
-    TriggerWidth  := TriggerRight - TriggerLeft
+    TriggerWidth  := TriggerRight  - TriggerLeft
     GridTop       := %A_Index%GridTop
     GridLeft      := %A_Index%GridLeft
 
-    TextTop := %A_Index%TriggerTop - ScreenTop
-    TextTop += Round((%A_Index%TriggerBottom - %A_Index%TriggerTop) / 2 )- 11
-    TextLeft := %A_Index%TriggerLeft - ScreenLeft
-    TextLeft += Round((%A_Index%TriggerRight - %A_Index%TriggerLeft) / 2) - 5
+    TextTop  := (%A_Index%TriggerTop  / 2) + (TriggerHeight / 2)  - ScreenTop
+    TextLeft := (%A_Index%TriggerLeft / 2) + (TriggerWidth  / 2)  - ScreenLeft
     RestoreLeft := TextLeft - 50
-    tempTop    := triggerTop    - (triggerTop    / 2) ; FIXME: 200% DPI
-    tempBottom := triggerBottom - (triggerBottom / 2) ; FIXME: 200% DPI
-    tempLeft   := triggerLeft   - (triggerLeft   / 2) ; FIXME: 200% DPI
-    tempRight  := triggerRight  - (triggerRight  / 2) ; FIXME: 200% DPI
+    tempTop    := TriggerTop
+    tempBottom := TriggerBottom
+    tempLeft   := TriggerLeft
+    tempRight  := TriggerRight
     tempHeight := tempBottom - tempTop +2
     tempWidth  := tempRight - tempLeft +2
-    Gui, add, Picture, Y%tempTop%    X%tempLeft% W%tempWidth% H3 ,%A_ScriptDir%\Images\%horizontalGrid%
-    Gui, add, Picture, Y%tempBottom% X%tempLeft% W%tempWidth% H3 ,%A_ScriptDir%\Images\%horizontalGrid%
-    Gui, add, Picture, Y%tempTop% X%tempLeft%  W3 H%tempHeight% ,%A_ScriptDir%\Images\%verticalGrid%
-    Gui, add, Picture, Y%tempTop% X%tempRight% W3 H%tempHeight% ,%A_ScriptDir%\Images\%verticalGrid%
-
-    shadowleft := textleft + 1
-    shadowtop := texttop + 1
+    Gui, add, Picture, Y%tempTop%    X%tempLeft%   W%tempWidth% H3, %A_ScriptDir%\Images\%horizontalGrid%
+    Gui, add, Picture, Y%tempBottom% X%tempLeft%   W%tempWidth% H3, %A_ScriptDir%\Images\%horizontalGrid%
+    Gui, add, Picture, Y%tempTop%    X%tempLeft%  W3 H%tempHeight%, %A_ScriptDir%\Images\%verticalGrid%
+    Gui, add, Picture, Y%tempTop%    X%tempRight% W3 H%tempHeight%, %A_ScriptDir%\Images\%verticalGrid%
 
     If ShowNumbersFlag
       If GridTop is number
         If GridLeft is number
           If A_Index < 10
           {
-            Gui, add, text, BackGroundTrans c%shadowcolor% X%ShadowLeft% Y%ShadowTop% ,%A_Index%
             Gui, add, text, BackGroundTrans c%textcolor% X%TextLeft% Y%TextTop% ,%A_Index%
           }
           else
           {
-            Gui, add, text,% "X" ShadowLeft - 6 " Y" ShadowTop "c"shadowcolor  "BackGroundTrans" ,%A_Index%
-            Gui, add, text,% "X" TextLeft - 6 " Y" TextTop "c"textcolor "BackGroundTrans" ,%A_Index%
+            Gui, add, text,% "X" TextLeft " Y" TextTop "c"textcolor "BackGroundTrans" ,%A_Index%
           }
 
 
@@ -853,22 +845,18 @@ creategroups:
     {
       If (GridTop = "WindowHeight" OR GridLeft = "WindowWidth")
       {
-        Gui, add, text,c%shadowcolor% BackGroundTrans  X%ShadowLeft% Y%ShadowTop% ,%A_Index%
         Gui, add, text,c%textcolor% BackGroundTrans  X%TextLeft% Y%TextTop% ,%A_Index%
       }
       If Gridtop = Restore
       {
-        Gui, add, text,c%shadowcolor% BackGroundTrans  X%RestoreUndoShadow% Y%ShadowTop% ,%A_Index%-Undo
         Gui, add, text,c%textcolor% BackGroundTrans  X%RestoreUndo% Y%TextTop% ,%A_Index%-Undo
       }
       If GridTop = Maximize
       {
-        Gui, add, text,c%shadowcolor% BackGroundTrans  X%RestoreLeftShadow% Y%ShadowTop% ,%A_Index%-Maximize
         Gui, add, text,c%textcolor% BackGroundTrans  X%RestoreLeft% Y%TextTop% ,%A_Index%-Maximize
       }
       If GridTop = AlwaysOnTop
       {
-        Gui, add, text,c%shadowcolor% BackGroundTrans  X%RestoreLeftShadow% Y%ShadowTop% ,%A_Index%-On Top
         Gui, add, text,c%textcolor% BackGroundTrans  X%RestoreLeft% Y%TextTop% ,%A_Index%-On Top
       }
     }
@@ -876,17 +864,14 @@ creategroups:
     {
       If Gridtop = Restore
       {
-        Gui, add, text,c%shadowcolor% BackGroundTrans  X%RestoreUndoShadow% Y%ShadowTop% ,Undo
         Gui, add, text,c%textcolor% BackGroundTrans  X%RestoreUndo% Y%TextTop% ,Undo
       }
       If GridTop = Maximize
       {
-        Gui, add, text,c%shadowcolor% BackGroundTrans  X%RestoreLeftShadow% Y%ShadowTop% ,Maximize
         Gui, add, text,c%textcolor% BackGroundTrans  X%RestoreLeft% Y%TextTop% ,Maximize
       }
       If GridTop = AlwaysOnTop
       {
-        Gui, add, text,c%shadowcolor% BackGroundTrans  X%RestoreLeftShadow% Y%ShadowTop% ,On Top
         Gui, add, text,c%textcolor% BackGroundTrans  X%RestoreLeft% Y%TextTop% ,On Top
       }
     }
@@ -900,24 +885,20 @@ creategroups:
       {
         If (%A_Index%GridBottom != "")
         {
-          Gui, add, text,c%shadowcolor% BackGroundTrans  X%RestoreLeftShadow% Y%ShadowTop% ,%A_Index%-%GridBottom%
           Gui, add, text,c%textcolor% BackGroundTrans  X%RestoreLeft% Y%TextTop% ,%A_Index%-%GridBottom%
         }
         else
         {
-          Gui, add, text,c%shadowcolor% BackGroundTrans  X%RestoreLeftShadow% Y%ShadowTop% ,%A_Index%-%GridLeft%
           Gui, add, text,c%textcolor% BackGroundTrans  X%RestoreLeft% Y%TextTop% ,%A_Index%-%GridLeft%
         }
       }else
       {
         If (%A_Index%GridBottom != "")
         {
-          Gui, add, text,c%shadowcolor% BackGroundTrans  X%RestoreLeftShadow% Y%ShadowTop% ,%GridBottom%
           Gui, add, text,c%textcolor% BackGroundTrans  X%RestoreLeft% Y%TextTop% ,%GridBottom%
         }
         else
         {
-          Gui, add, text,c%shadowcolor% BackGroundTrans  X%RestoreLeftShadow% Y%ShadowTop% ,%GridLeft%
           Gui, add, text,c%textcolor% BackGroundTrans  X%RestoreLeft% Y%TextTop% ,%GridLeft%
         }
       }

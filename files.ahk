@@ -371,7 +371,7 @@ Template-3part:
     %Count%TriggerTop    := MonitorTop
     %Count%TriggerRight  := MonitorRight
     %Count%TriggerBottom := MonitorBottom
-    %Count%TriggerLeft   := MonitorLeft + Round(MonitorWidth / 2)
+    %Count%TriggerLeft   := MonitorLeft + Round(MonitorWidth / 3)
     %Count%GridTop       := %Count%TriggerTop
     %Count%GridRight     := %Count%TriggerRight
     %Count%GridBottom    := %Count%TriggerBottom
@@ -379,7 +379,7 @@ Template-3part:
 
     Count+=1
     %Count%TriggerTop    := MonitorTop
-    %Count%TriggerRight  := MonitorLeft + Round(MonitorWidth / 2)
+    %Count%TriggerRight  := MonitorLeft + Round(MonitorWidth / 3)
     %Count%TriggerBottom := MonitorTop + Round(MonitorHeight / 2)
     %Count%TriggerLeft   := MonitorLeft
     %Count%GridTop       := %Count%TriggerTop
@@ -390,7 +390,7 @@ Template-3part:
     Count+=1
     temp := count - 1
     %Count%TriggerTop    := %Temp%TriggerBottom +0.01
-    %Count%TriggerRight  := MonitorLeft + Round(MonitorWidth / 2)
+    %Count%TriggerRight  := MonitorLeft + Round(MonitorWidth / 3)
     %Count%TriggerBottom := MonitorBottom
     %Count%TriggerLeft   := MonitorLeft
     %Count%GridTop       := %Count%TriggerTop
