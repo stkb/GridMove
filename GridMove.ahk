@@ -781,14 +781,12 @@ setGuiColors()
   }else if(colortheme="black")
   {
     Gui, Font, s15 cBlack, Tahoma
-    shadowcolor=333333
-    textcolor=000000
+    textcolor=FFD300
     guicolor=333333
     horizontalGrid=Gridh_black.bmp
     verticalGrid=Gridv_black.bmp
   }else{
     Gui, Font, s15 cRed, Tahoma
-    shadowcolor=000000
     textcolor=FFD300
     guicolor=EEAA99
     horizontalGrid=Gridh_orange.bmp
@@ -817,8 +815,8 @@ creategroups:
     tempBottom := TriggerBottom
     tempLeft   := TriggerLeft
     tempRight  := TriggerRight
-    tempHeight := tempBottom - tempTop +2
-    tempWidth  := tempRight - tempLeft +2
+    tempHeight := tempBottom - tempTop  + 2
+    tempWidth  := tempRight  - tempLeft + 2
     Gui, add, Picture, Y%tempTop%    X%tempLeft%   W%tempWidth% H3, %A_ScriptDir%\Images\%horizontalGrid%
     Gui, add, Picture, Y%tempBottom% X%tempLeft%   W%tempWidth% H3, %A_ScriptDir%\Images\%horizontalGrid%
     Gui, add, Picture, Y%tempTop%    X%tempLeft%  W3 H%tempHeight%, %A_ScriptDir%\Images\%verticalGrid%
