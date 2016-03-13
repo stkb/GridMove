@@ -22,15 +22,15 @@
     Transparency                  = 200
     TitleSize                    := 100
     EdgeTime                     := 50
-    FastMoveModifiers             = #
+    FastMoveModifiers             = !
     MButtonExceptions             = inkscape.exe
     CommandHotkey                 = #g
     FastMoveMeta                  =
     ColorTheme                    = black
-    Exceptions                    = QuarkXPress,Winamp v1.x,Winamp PE,Winamp Gen,Winamp EQ,Shell_TrayWnd,32768,Progman,DV2ControlHost
-    GridOrder                     = 2 Part Vertical, 3 Part, Edge Grid, Dual Screen
+    Exceptions                    = QuarkXPress
+    GridOrder                     = Custom, 3 Part
     Language                      = EN
-    GridName                      = Grids/3 Part.grid
+    GridName                      = Grids/Custom.grid
 
     ScriptVersion = 1.19.72
     MutexExists("GridMove_XB032")
