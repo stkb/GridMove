@@ -26,7 +26,7 @@
     MButtonExceptions             = inkscape.exe
     CommandHotkey                 = #g
     FastMoveMeta                  =
-    ColorTheme                    = orange
+    ColorTheme                    = black
     Exceptions                    = QuarkXPress,Winamp v1.x,Winamp PE,Winamp Gen,Winamp EQ,Shell_TrayWnd,32768,Progman,DV2ControlHost
     GridOrder                     = 2 Part Vertical, 3 Part, Edge Grid, Dual Screen
     Language                      = EN
@@ -866,12 +866,12 @@ creategroups:
     Gui, Margin, 0, 0
     Gui, show, x0 y0 w0 h0 noactivate, GridMove Drop Zone 0xba
     WinGet, GuiId, Id, GridMove Drop Zone 0xba
-    WinSet, TransColor, %guicolor%
+    WinSet, Transparent, %Transparency%
 
     Gui, 2: +ToolWindow +AlwaysOnTop +lastfound -Disabled -SysMenu -Caption
     Gui, 2: Color, %guicolor%
     Gui, 2: Margin, 0, 0
-    WinSet, Transparent, %Transparency%,
+    WinSet, Transparent, %Transparency%
     gui2hwnd := WinExist()
 
     Gui, hide
