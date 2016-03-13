@@ -818,12 +818,7 @@ creategroups:
         If ShowNumbersFlag
             If GridTop is number
                 If GridLeft is number
-                    If A_Index < 10
                         Gui, add, text, BackGroundTrans c%textcolor% X%TextLeft% Y%TextTop%, %A_Index%
-                    else
-                        Gui, add, text, % "X" TextLeft " Y" TextTop "c"textcolor "BackGroundTrans" , %A_Index%
-
-
 
         If ShowNumbersFlag
         {
