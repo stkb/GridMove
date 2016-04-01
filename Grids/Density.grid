@@ -17,7 +17,7 @@
   TriggerBottom = [Monitor1Top]  + 50
   TriggerLeft   = [Monitor1Left] + [Monitor1Width]  / 4 * 1
   TriggerRight  = [Monitor1Left] + [Monitor1Width]  / 4 * 2
-  GridLeft   = [Monitor1Left]    + [Monitor1Width]  / 4 * 1
+  GridLeft   = [Monitor1Left]    + [Monitor1Width]  / 4 * 0
   GridRight  = [Monitor1Left]    + [Monitor1Width]  / 4 * 2
   GridTop    = [Monitor1Top]
   GridBottom = [Monitor1Bottom]
