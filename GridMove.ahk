@@ -737,9 +737,11 @@ GetGrid(number)
   GridHeight := GridBottom - GridTop
 
     ; FIXME: Window border padding in Grid*
-    GridLeft   := GridLeft   - 5
-    GridWidth  := GridWidth  + 8
-    GridHeight := GridHeight + 6
+    if (A_OSVersion >= 10) {
+        GridLeft   := GridLeft   - 5
+        GridWidth  := GridWidth  + 8
+        GridHeight := GridHeight + 6
+    }
 }
 
 
