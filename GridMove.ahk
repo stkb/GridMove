@@ -822,23 +822,19 @@ creategroups:
         Gui, add, Picture, Y%TriggerTop%    X%TriggerLeft%  W3 H%TriggerHeight%, %A_ScriptDir%\Images\%verticalGrid%
         Gui, add, Picture, Y%TriggerTop%    X%TriggerRight% W3 H%TriggerHeight%, %A_ScriptDir%\Images\%verticalGrid%
 
-        If ShowNumbersFlag
+        If ShowNumbersFlag {
             If GridTop is number
                 If GridLeft is number
-                        Gui, add, text, BackGroundTrans c%textcolor% X%TextLeft% Y%TextTop%, %A_Index%
-
-        If ShowNumbersFlag
-        {
-            If (GridTop = "WindowHeight" OR GridLeft = "WindowWidth")
+                  Gui, add, text, BackGroundTrans c%textcolor% X%TextLeft% Y%TextTop%, %A_Index%
+            else if (GridTop = "WindowHeight" OR GridLeft = "WindowWidth")
                 Gui, add, text, c%textcolor% BackGroundTrans X%TextLeft% Y%TextTop%,    %A_Index%
-            If Gridtop = Restore
+            else if Gridtop = Restore
                 Gui, add, text, c%textcolor% BackGroundTrans X%RestoreUndo% Y%TextTop%, %A_Index% -Undo
-            If GridTop = Maximize
+            else if GridTop = Maximize
                 Gui, add, text, c%textcolor% BackGroundTrans X%RestoreLeft% Y%TextTop%, %A_Index% -Maximize
-            If GridTop = AlwaysOnTop
+            else if GridTop = AlwaysOnTop
                 Gui, add, text, c%textcolor% BackGroundTrans X%RestoreLeft% Y%TextTop%, %A_Index% -On Top
-        } else
-        {
+        } else {
             If Gridtop = Restore
                 Gui, add, text, c%textcolor% BackGroundTrans X%RestoreUndo% Y%TextTop%, Undo
             If GridTop = Maximize
