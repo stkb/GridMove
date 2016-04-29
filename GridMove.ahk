@@ -742,10 +742,10 @@ GetGrid(number)
         GridWidth  := GridWidth  + 8
         GridHeight := GridHeight + 6
     } else {
-        GridLeft   := GridLeft   - 3
-        GridWidth  := GridWidth  + 5
-        GridHeight := GridHeight + 7
-        GridTop    := GridTop    - 3
+        GridLeft   := GridLeft   - 0
+        GridWidth  := GridWidth  + 0
+        GridHeight := GridHeight + 0
+        GridTop    := GridTop    - 0
     }
 }
 
