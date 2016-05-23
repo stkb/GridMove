@@ -380,8 +380,6 @@ WinHotkeysMeta:
       {
       GoSub, Command_Hide
       msgbox,NOT DONE!!
-;      WinMove, A, ,%WinLeft%,%GridTop%, %WinWidth%,% GridBottom - GridTop,
-;      StoreWindowState(WindowId,WinLeft,WinTop,WinWidth,WinHeight)
       return
       }
     Else If (FirstNumber = "R")
@@ -457,7 +455,6 @@ MoveToNext:
       current := a_index
       break
     }
-    ;msgbox,% GridTop GridBottom Grid
   }
   if (current = 0 AND direction = "back")
     current := ngroups + 1
