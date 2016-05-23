@@ -325,10 +325,55 @@ DefineHotkeys:
      Hotkey, %FastMoveModifiers%%A_Index%, WinHotkeys
      Hotkey, %FastMoveModifiers%Numpad%A_Index%, WinHotkeys
   }
-  Hotkey, %FastMoveModifiers%0, WinHotKey
+  Hotkey, %FastMoveModifiers%0, WinHotKey10
+  Hotkey, %FastMoveModifiers%-, WinHotKey11
+  Hotkey, %FastMoveModifiers%=, WinHotKey12
+  Hotkey, %FastMoveModifiers%q, WinHotKey13
+  Hotkey, %FastMoveModifiers%w, WinHotKey14
+  Hotkey, %FastMoveModifiers%e, WinHotKey15
+  Hotkey, %FastMoveModifiers%r, WinHotKey16
+  Hotkey, %FastMoveModifiers%t, WinHotKey17
+  Hotkey, %FastMoveModifiers%y, WinHotKey18
+  Hotkey, %FastMoveModifiers%u, WinHotKey19
+  Hotkey, %FastMoveModifiers%i, WinHotKey20
+
   Hotkey, %FastMoveModifiers%Numpad0, WinHotkeys
   if FastMoveMeta <>
     Hotkey, %FastMoveModifiers%%FastMoveMeta%, WinHotkeysMeta
+  return
+
+WinHotkey10:
+  MoveToGrid("10")
+  return
+WinHotkey11:
+  MoveToGrid("11")
+  return
+WinHotkey12:
+  MoveToGrid("12")
+  return
+WinHotkey13:
+  MoveToGrid("13")
+  return
+WinHotkey14:
+  MoveToGrid("14")
+  return
+WinHotkey15:
+  MoveToGrid("15")
+  return
+WinHotkey16:
+  MoveToGrid("16")
+  return
+WinHotkey17:
+  MoveToGrid("17")
+  return
+WinHotkey18:
+  MoveToGrid("18")
+  return
+WinHotkey19:
+  MoveToGrid("19")
+  return
+WinHotkey20:
+  MoveToGrid("20")
   return
 
 WinHotkeys:
@@ -400,10 +445,6 @@ WinHotkeysMeta:
   GoSub, Command_Hide
   FirstNumber := FirstNumber + 10
   MoveToGrid(FirstNumber)
-  return
-
-WinHotkey:
-  MoveToGrid("10")
   return
 
 MoveToPrevious:
