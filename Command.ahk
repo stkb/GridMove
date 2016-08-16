@@ -4,40 +4,70 @@
 ;function: Adjusts windows to a predefined or user-defined desktop grid.
 
 Command:
-
   GoSub, ShowGroups
 
 Drop_Command:
   Settimer,Drop_Command,off
   OSDwrite("- -")
-  Input,FirstNumber,I L1 T10,{esc},1,2,3,4,5,6,7,8,9,0,m,r,n,M,v,a,e
+  Input, FirstNumber, I L1 T10, {Escape}{Left}{Right}{Up}, c,n,q,r,x
+
   If ErrorLevel = Max
-    {
+  {
     OSDwrite("| |")
     sleep,200
-    GoSub,Command
-    }
-  If (ErrorLevel = "Timeout" OR ErrorLevel = "EndKey")
-    {
+    GoSub, Command
+  }
+
+  If (ErrorLevel = "EndKey:Left") 
+  {
+    MoveToPos(Monitor1Left, Monitor1Top, Monitor1Width / 2, Monitor1Bottom)
     GoSub, Command_Hide
     return
-    }
+  }
+
+  Else If (ErrorLevel = "EndKey:Right")
+  {
+    MoveToPos(Monitor1Width / 2, Monitor1Top, Monitor1Right, Monitor1Bottom)
+    GoSub, Command_Hide
+    return 
+  }
+
+  Else If (ErrorLevel = "EndKey:Up")
+  {
+    WinMaximize, A
+    GoSub, Command_Hide
+    return 
+  }
+
+  Else If (ErrorLevel = "Timeout" OR ErrorLevel = "EndKey")
+  {
+    GoSub, Command_Hide
+    return
+  }
 
   If FirstNumber is not number
+  {
+    If (FirstNumber = "c")
     {
-    If (FirstNumber = "M")
-      {
-      winget,state,minmax,A
-      if state = 1
-        WinRestore,A
-      else
-        PostMessage, 0x112, 0xF030,,, A,
-      }
-    Else If (FirstNumber = "e")
+      WinClose, A
+    }
+    Else If (FirstNumber = "q")
     {
       GoSub, Command_Hide
       exitapp
       return
+    }
+    Else If (FirstNumber = "n")
+    {
+      WinMinimize, A
+    }
+    Else If (FirstNumber = "r")
+    {
+      WinRestore, A
+    }
+    Else If (FirstNumber = "x")
+    {
+      WinMaximize, A
     }
     Else If (FirstNumber = "A")
     {
@@ -46,27 +76,23 @@ Drop_Command:
       return
     }
     Else If (FirstNumber = "V")
-      {
+    {
       GoSub, Command_Hide
       msgbox,NOT DONE!!
 ;      WinMove, A, ,%WinLeft%,%GridTop%, %WinWidth%,% GridBottom - GridTop,
 ;      StoreWindowState(WindowId,WinLeft,WinTop,WinWidth,WinHeight)
       return
-      }
-    Else If (FirstNumber = "R")
-      {
+    }
+    Else If (FirstNumber = "Reload")
+    {
       GoSub, Command_Hide
       Reload
-      }
-    Else If FirstNumber = n
-      {
-      gosub, NextGrid
-      gosub, command
-      return
-      }
+    }
+
+
     GoSub, Command_Hide
     return
-    }
+  }
 
   If (NGroups < FirstNumber * 10)
     {
@@ -165,7 +191,7 @@ OSDHide()
   }
 
 MoveToGrid(GridToMove)
-  {
+{
   global
   triggerTop := %GridToMove%TriggerTop
   triggerBottom := %GridToMove%TriggerBottom
@@ -180,8 +206,12 @@ MoveToGrid(GridToMove)
   GridBottom := %GridToMove%GridBottom
   GridRight := %GridToMove%GridRight
   GridLeft := %GridToMove%GridLeft
+msgbox, %GridLeft%
+  MoveToPos(GridLeft, GridTop, GridRight, GridBottom)
+}
 
-
+MoveToPos(GridLeft, GridTop, GridRight, GridBottom)
+{
   WinGetPos, WinLeft, WinTop, WinWidth, WinHeight,A
   WinGetClass,WinClass,A
   WinGet,WindowId,id,A

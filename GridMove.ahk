@@ -1121,13 +1121,24 @@ CreateGridFromFile:
   GoSub, HideGroups
   Gui,destroy
   Gui,2:destroy
+
+  ;  IniRead, sectionsStr, %A_ScriptDir%\%GridName%
+  ;  sections := StrSplit(sectionsStr, "`n")
+
+  ;  MsgBox % sections[1]
+
   IniRead,NGroups,%A_ScriptDir%\%GridName%,Groups,NumberOfGroups,Error
   If (NGroups = "error")
-    {
+  {
     MsgBox,%error_ngroups% %GridName%
     GoSub, Template-3Part
     return
-    }
+  }
+
+  ;  For key, value in sections {
+  ;    MsgBox %key% = %value%
+  ;  }
+
   ErrorLevel := False
   loop,%NGroups%
   {
