@@ -263,7 +263,7 @@ MoveToPos(GridLeft, GridTop, GridRight, GridBottom)
   }
   If (GridTop = "AlwaysOnTop")
   {
-    WinSet, AlwaysOnTop, Toggle,A
+    WinSet, AlwaysOnTop, Toggle, A
     return
   }
   If (GridTop =  "Maximize")
